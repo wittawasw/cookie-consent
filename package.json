@@ -1,0 +1,21 @@
+{
+  "name": "cookie-consent",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "dev": "node --env-file=.env serve.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node --env-file=.env  esbuild.config.mjs"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "cssnano": "^6.0.1",
+    "esbuild": "0.19.3",
+    "esbuild-sass-plugin": "^2.15.0",
+    "http-server": "^14.1.1",
+    "postcss": "^8.4.30",
+    "postcss-preset-env": "^9.1.4"
+  }
+}

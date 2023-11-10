@@ -1,0 +1,15 @@
+// _variables.scss
+
+$primary-color: #2DD19A;
+$adjacent-color: #01B9F7;
+$primary-background-color: linear-gradient(90deg, $primary-color 0%, $adjacent-color 100%);
+$neutral-color: #111111;
+$background-color: #FFFFFF;
+$background-shade-color: #CCC;
+$box-shadow-color: #44444440;
+$button-background-hover: #999;
+$button-background-primary: $primary-color;
+$button-background-secondary: #EEEEEE;
+$font-color: #666;
+
+$gap-desktop: 22px;

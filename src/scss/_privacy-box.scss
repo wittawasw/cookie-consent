@@ -1,0 +1,247 @@
+// _privacy-box.scss
+
+@import 'variables';
+
+.privacy-box {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 9999; // fix index to display on top
+  bottom: $gap-desktop;
+  left: $gap-desktop;
+  width: 398px; // width for desktop
+  background: $background-color;
+  // border: 1px solid $background-shade-color;
+  color: $neutral-color;
+  border-radius: 10px;
+  text-align: left;
+  padding: 16px 18px 16px 18px;
+  box-shadow: 0px 0px 25px 0px $box-shadow-color;
+
+  max-height: 90%;
+  overflow-y: hidden;
+
+  @media (max-width: 400px) {
+    max-width: 99%; // Max width on mobile
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%); // left and translate to force center
+  }
+
+  p {
+    &.cookie-header {
+      line-height: 1.2;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 24px;
+      margin: 0.5rem 0 1rem 0;
+
+      svg {
+        overflow: hidden;
+        vertical-align: middle;
+        box-sizing: border-box;
+      }
+    }
+
+    &.body {
+      line-height: 22.68px;
+      font-size: 15px;
+
+      a {
+        color: $neutral-color;
+        text-decoration: underline;
+
+        &:hover {
+          color: $font-color;
+        }
+      }
+    }
+  }
+
+  .privacy-buttons {
+    display: block;
+    height: 46px; // Adjusted height
+
+    .privacy-button {
+      display: inline-block;
+      width: 94px;
+      height: 46px;
+      line-height: 46px;
+      margin-right: 10px;
+      // padding: 13px 0;
+      color: $background-color;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 10px;
+      text-align: center;
+      box-sizing: border-box;
+
+      @media (max-width: 400px) {
+        width: 84px;
+      }
+
+      &.positive {
+        background: $primary-color;
+
+        &:hover {
+          color: $background-shade-color;
+        }
+      }
+
+      &.negative, &.toggle-button {
+        color: $neutral-color;
+        background: $button-background-secondary;
+
+        &:hover {
+          background-color: $button-background-hover;
+        }
+      }
+
+      &.toggle-button {
+        height: 46px;
+        line-height: 46px;
+        width: 148px;
+
+        @media (max-width: 400px) {
+          width: 128px;
+        }
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .toggle-checkbox:checked ~ .preferences {
+    display: block;
+    max-height: 60vh;
+    overflow: hidden;
+
+    @media (max-width: 500px) {
+      max-height: 80vh;
+    }
+  }
+
+  input[type=checkbox]#togglePreferences {
+    display: none;
+  }
+
+  .toggle-button .checked,
+  .toggle-button .unchecked {
+    display: none;
+  }
+
+  /* Display the .checked span when the checkbox is checked */
+  .toggle-checkbox:checked ~ .privacy-buttons .toggle-button .checked {
+    display: block;
+  }
+
+  /* Display the .unchecked span when the checkbox is not checked */
+  .toggle-checkbox:not(:checked) ~ .privacy-buttons .toggle-button .unchecked {
+    display: block;
+  }
+
+  .preferences {
+    display: none;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+    width: 100%;
+
+    // Style for each preference item
+    .preference {
+      border: 1px solid $button-background-secondary;
+      margin: 10px 0;
+      border-radius: 10px;
+
+      // Style for the topic (label and checkbox)
+      .topic {
+        background-color: $background-color;
+        padding: 7.5px 10px;
+        cursor: pointer;
+        user-select: none;
+
+        // Style for the heading text
+        .heading {
+          box-sizing: border-box;
+          display: block;
+          width: 100%;
+          height: 29px;
+          line-height: 29px; // use line-height to make vertical center
+          font-weight: bold;
+          font-size: 15px;
+          cursor: pointer;
+
+          label.switch {
+            display: inline-block;
+            width: 280px;
+            box-sizing: border-box;
+            cursor: pointer;
+
+            @media (max-width: 400px) {
+              width: 230px;
+            }
+
+            &.required  {
+              width: 204px;
+
+              @media (max-width: 400px) {
+                width: 154px;
+              }
+            }
+          }
+
+          label.arrow {
+            display: inline-block;
+            width: 10px;
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+            top: 3px;
+            box-sizing: border-box;
+
+            span {
+              display: block;
+              width: 20px;
+              transition: transform 0.3s;
+              font-size: 32px;
+              line-height: 0; // Make it 0 to have no affect on other
+              position: relative;
+              top: 12px;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+
+
+      input.display-preference-content{
+        display: none;
+      }
+
+      // Rotate the arrow when the checkbox is checked
+      input.display-preference-content:checked ~ .topic .heading label.arrow span {
+        transform: rotate(180deg);
+        top: -8px;
+        left: 7px;
+      }
+
+      // Style for the content that is initially hidden
+      .content {
+        color: $font-color;
+        font-size: 14px;
+        max-height: 0;
+        padding: 0 10px;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        line-height: normal;
+      }
+
+      // Style for the content that is visible when the checkbox is checked
+      input.display-preference-content:checked ~ .content {
+        padding: 0 10px;
+        margin-bottom: 10px;
+        max-height: 1000px; // Adjust this value based on content height
+      }
+    }
+  }
+}
