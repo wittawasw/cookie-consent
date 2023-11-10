@@ -39,9 +39,10 @@ if (hasCookieConsent()) {
 ```
 
 ### Environment Variables
+- add custom options in `.env`.
 
 ```shell
 GTAG=G-EXAMPLE_TAG #specified G tag for Google Analytics
 PRIVACY_POLICY_URL="example.com/privacy.html" #specified privacy policy link
-PORT=3000
+PORT=3000 # development port
 ```
